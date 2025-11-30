@@ -1,0 +1,173 @@
+/* ===========================================
+   전체 페이지 기본 스타일
+   - 기본 폰트, 전체 여백, 배경색 설정
+   =========================================== */
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8fafc; /* ← 페이지 전체 배경색 (원하면 다른 파스텔톤으로 변경 가능) */
+    color: #333; /* 기본 텍스트 색상 */
+}
+
+/* ===========================================
+   헤더 영역 스타일
+   =========================================== */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #ffffff; /* 헤더 배경색 */
+    border-bottom: 2px solid #e5e7eb;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+header .subtitle {
+    font-size: 1rem;
+    color: #6b7280; /* 부제 색 */
+}
+
+/* ===========================================
+   '나의 이야기' 섹션
+   =========================================== */
+#my-story {
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+#my-story h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}
+
+/* ===========================================
+   의약품 카드 그리드 레이아웃
+   =========================================== */
+.drug-grid {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 10px;
+    display: grid;
+
+    /* 카드 3개를 일정 간격으로 배치 */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* ===========================================
+   개별 약품 카드 공통 스타일
+   =========================================== */
+.drug-card {
+    background: #ffffff; /* 카드 배경 */
+    border-radius: 15px; /* 둥근 모서리 */
+    padding: 20px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1); /* 기본 입체감 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* hover 효과 전환 */
+}
+
+/* 마우스를 올렸을 때 카드 확대 + 빛나는 느낌 */
+.drug-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+}
+
+/* 카드 내 제목(약품 이름) */
+.drug-card h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+/* 카드 이미지 스타일 */
+.drug-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* 약품 정보 리스트 */
+.drug-info {
+    list-style: none; /* 리스트 점 제거 */
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.drug-info li {
+    margin-bottom: 6px;
+}
+
+/* 경고 박스 디자인 */
+.warning-box {
+    background: #fff4f4; /* 연한 붉은 배경 */
+    border-left: 4px solid #e11d48; /* 강조색 */
+    padding: 10px 12px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+/* 약학정보원 링크 버튼 */
+.link-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #2563eb; /* 파란색 계열 — 필요시 변경 가능 */
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease;
+}
+
+.link-btn:hover {
+    background-color: #1e3a8a; /* 링크 hover 색 */
+}
+
+/* 약품 카드 내부의 사용자 코멘트 영역 */
+.my-comment {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    color: #444;
+    /* 여기에 작성하면 카드 아래쪽에 자연스럽게 추가됨 */
+}
+
+/* ===========================================
+   약품별 개별 테마 색상 (포인트 컬러)
+   → 여기 색상을 다른 색으로 바꾸면 카드의 느낌이 달라짐!
+   =========================================== */
+
+/* 타이레놀: 빨간 계열 */
+.tylenol {
+    border-top: 6px solid #dc2626; /* 진한 빨강 */
+}
+
+/* 아스피린: 초록 계열 */
+.aspirin {
+    border-top: 6px solid #059669; /* 녹색 */
+}
+
+/* 베아제: 파란 계열 */
+.beaze {
+    border-top: 6px solid #2563eb; /* 푸른색 */
+}
+
+/* ===========================================
+   푸터 영역 (내 정보)
+   =========================================== */
+footer {
+    text-align: center;
+    padding: 25px 10px;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 0.95rem;
+    margin-top: 40px;
+    border-top: 2px solid #e2e8f0;
+}
