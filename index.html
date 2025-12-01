@@ -17,15 +17,106 @@
     </header>
 
     <!-- =========================
-         2. 나의 이야기 섹션  
-         → 너가 직접 글 작성하는 공간
-    ========================== -->
-    <section id="my-story">
-        <h2>원하는 의약품을 검색하세요.</h2>
-        <p>
-            <!-- 여기에 약품에 대한 나의 생각, 느낌, 경험 등 자유롭게 작성하세요! -->
-        </p>
-    </section>
+     의약품 검색 섹션 (약학정보원 링크 버전)
+========================== -->
+<section id="my-story">
+    <h2>원하는 의약품을 검색하세요.</h2>
+
+    <div style="position: relative; width: 80%; max-width: 400px;">
+        <input 
+            type="text" 
+            id="drug-search" 
+            placeholder="의약품 이름을 입력하세요"
+            autocomplete="off"
+            style="
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 16px;
+            "
+        >
+
+        <!-- 자동완성 드롭다운 -->
+        <ul id="autocomplete-list" 
+            style="
+                position: absolute;
+                top: 45px;
+                width: 100%;
+                background: white;
+                border: 1px solid #ddd;
+                border-top: none;
+                border-radius: 0 0 6px 6px;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                max-height: 180px;
+                overflow-y: auto;
+                display: none;
+                z-index: 10;
+            "
+        ></ul>
+    </div>
+</section>
+
+<script>
+    // 의약품 목록 + 약학정보원 링크
+    const drugs = [
+        { name: "타이레놀", url: "https://www.health.kr/searchDrug/result_drug.asp?drug_cd=2021082400002" },
+        { name: "아스피린", url: "https://www.health.kr/searchDrug/result_drug.asp?drug_cd=A11A1380A0008" },
+        { name: "베아제",   url: "https://www.health.kr/searchDrug/result_drug.asp?drug_cd=A11A0430A0267" }
+    ];
+
+    const searchInput = document.getElementById("drug-search");
+    const autoList = document.getElementById("autocomplete-list");
+
+    searchInput.addEventListener("input", () => {
+        const keyword = searchInput.value.trim();
+        autoList.innerHTML = "";
+
+        if (keyword === "") {
+            autoList.style.display = "none";
+            return;
+        }
+
+        // 검색 필터
+        const filtered = drugs.filter(d => d.name.includes(keyword));
+
+        if (filtered.length === 0) {
+            autoList.style.display = "none";
+            return;
+        }
+
+        // 자동완성 생성
+        filtered.forEach(d => {
+            const li = document.createElement("li");
+            li.textContent = d.name;
+            li.style.padding = "10px";
+            li.style.cursor = "pointer";
+            li.style.borderBottom = "1px solid #eee";
+
+            li.addEventListener("mouseover", () => li.style.background = "#f0f0f0");
+            li.addEventListener("mouseout", () => li.style.background = "white");
+
+            // 클릭 → 약학정보원 링크 새 창에서 열기 ⭐
+            li.addEventListener("click", () => {
+                window.open(d.url, "_blank");
+            });
+
+            autoList.appendChild(li);
+        });
+
+        autoList.style.display = "block";
+    });
+
+    // 외부 클릭 시 자동완성 닫기
+    document.addEventListener("click", (event) => {
+        if (!event.target.closest("#autocomplete-list") &&
+            !event.target.closest("#drug-search")) {
+            autoList.style.display = "none";
+        }
+    });
+</script>
 
     <!-- =========================
          3. 의약품 정보 그리드
@@ -168,6 +259,15 @@
     }
   }
 </style>
+<!--
+  옵션 설명:
+  1) 텍스트 선택 가능하게 하려면 `pointer-events: none;` 와 `user-select: none;` 를 삭제하세요.
+  2) 클릭 가능한 링크(예: 개인정보/이용약관으로 연결)를 넣고 싶으면 pointer-events를 none에서 auto로 바꾸고 스타일에 cursor:pointer 추가하세요.
+  3) 만약 footer의 다른 콘텐츠와 겹치는 문제가 있으면 z-index 값을 조정하거나 bottom/right 값을 변경하세요.
+  4) 반투명 배경을 원하면 background 값을 `rgba(255,255,255,0.8)` 같이 바꾸세요.
+-->
+</body>
+</html>
 
 <!--
   옵션 설명:
@@ -176,6 +276,5 @@
   3) 만약 footer의 다른 콘텐츠와 겹치는 문제가 있으면 z-index 값을 조정하거나 bottom/right 값을 변경하세요.
   4) 반투명 배경을 원하면 background 값을 `rgba(255,255,255,0.8)` 같이 바꾸세요.
 -->
-
 </body>
 </html>
