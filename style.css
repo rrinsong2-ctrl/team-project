@@ -80,6 +80,7 @@ header .subtitle {
 
 /* 카드 내 제목(약품 이름) */
 .drug-card h2 {
+    text-align: center;
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 1.5rem;
