@@ -17,15 +17,106 @@
     </header>
 
     <!-- =========================
-         2. 나의 이야기 섹션  
-         → 너가 직접 글 작성하는 공간
-    ========================== -->
-    <section id="my-story">
-        <h2>원하는 의약품을 검색하세요.</h2>
-        <p>
-            <!-- 여기에 약품에 대한 나의 생각, 느낌, 경험 등 자유롭게 작성하세요! -->
-        </p>
-    </section>
+     의약품 검색 섹션 (약학정보원 링크 버전)
+========================== -->
+<section id="my-story">
+    <h2>원하는 의약품을 검색하세요.</h2>
+
+    <div style="position: relative; width: 80%; max-width: 400px;">
+        <input 
+            type="text" 
+            id="drug-search" 
+            placeholder="의약품 이름을 입력하세요"
+            autocomplete="off"
+            style="
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                font-size: 16px;
+            "
+        >
+
+        <!-- 자동완성 드롭다운 -->
+        <ul id="autocomplete-list" 
+            style="
+                position: absolute;
+                top: 45px;
+                width: 100%;
+                background: white;
+                border: 1px solid #ddd;
+                border-top: none;
+                border-radius: 0 0 6px 6px;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                max-height: 180px;
+                overflow-y: auto;
+                display: none;
+                z-index: 10;
+            "
+        ></ul>
+    </div>
+</section>
+
+<script>
+    // 의약품 목록 + 약학정보원 링크
+    const drugs = [
+        { name: "타이레놀", url: "https://www.health.kr/searchDrug/result_drug.asp?drug_cd=2021082400002" },
+        { name: "아스피린", url: "https://www.health.kr/searchDrug/result_drug.asp?drug_cd=A11A1380A0008" },
+        { name: "베아제",   url: "https://www.health.kr/searchDrug/result_drug.asp?drug_cd=A11A0430A0267" }
+    ];
+
+    const searchInput = document.getElementById("drug-search");
+    const autoList = document.getElementById("autocomplete-list");
+
+    searchInput.addEventListener("input", () => {
+        const keyword = searchInput.value.trim();
+        autoList.innerHTML = "";
+
+        if (keyword === "") {
+            autoList.style.display = "none";
+            return;
+        }
+
+        // 검색 필터
+        const filtered = drugs.filter(d => d.name.includes(keyword));
+
+        if (filtered.length === 0) {
+            autoList.style.display = "none";
+            return;
+        }
+
+        // 자동완성 생성
+        filtered.forEach(d => {
+            const li = document.createElement("li");
+            li.textContent = d.name;
+            li.style.padding = "10px";
+            li.style.cursor = "pointer";
+            li.style.borderBottom = "1px solid #eee";
+
+            li.addEventListener("mouseover", () => li.style.background = "#f0f0f0");
+            li.addEventListener("mouseout", () => li.style.background = "white");
+
+            // 클릭 → 약학정보원 링크 새 창에서 열기 ⭐
+            li.addEventListener("click", () => {
+                window.open(d.url, "_blank");
+            });
+
+            autoList.appendChild(li);
+        });
+
+        autoList.style.display = "block";
+    });
+
+    // 외부 클릭 시 자동완성 닫기
+    document.addEventListener("click", (event) => {
+        if (!event.target.closest("#autocomplete-list") &&
+            !event.target.closest("#drug-search")) {
+            autoList.style.display = "none";
+        }
+    });
+</script>
 
     <!-- =========================
          3. 의약품 정보 그리드
@@ -121,6 +212,60 @@
             <!-- 여기에 본인 이름을 넣고 싶다면 작성하세요 -->
         </p>
     </footer>
+<!--
+  Filename: medical-disclaimer.html
+  설명: 홈페이지 우하단에 작고 회색 텍스트로 "이 사이트는 의학적 조언을 위한 사이트가 아닙니다. 건강과 관련된 문제는 반드시 의료 전문가와 상담하십시오." 문구를 고정해서 표시하는 코드 스니펫입니다.
+  사용법: 아래 <div id="medical-disclaimer">...</div> 를 사이트의 <body> 맨 끝(footer 바로 위 또는 </body> 직전에) 붙여 넣으세요.
+-->
 
+<!-- Disclaimer HTML -->
+<div id="medical-disclaimer" role="note" aria-label="의학 고지" tabindex="-1">
+  이 사이트는 의학적 조언을 위한 사이트가 아닙니다. 건강과 관련된 문제는 반드시 의료 전문가와 상담하십시오.
+</div>
+
+<!-- Styles: 붙여넣기만 하면 작고 회색으로 우하단에 표시됩니다. -->
+<style>
+  /* 안전성: pointer-events를 none으로 하면 아래 요소 클릭을 방해하지 않습니다. 필요한 경우 제거하세요. */
+  #medical-disclaimer {
+    position: fixed;
+    right: 12px;           /* 오른쪽 여백 */
+    bottom: 10px;          /* 아래 여백 */
+    z-index: 9999;         /* 다른 요소보다 위에 위치 */
+
+    font-size: 12px;       /* 작게 보이도록 조정 */
+    line-height: 1.2;
+    color: #6b7280;        /* 회색(#6b7280은 Tailwind의 gray-500 계열) */
+
+    background: rgba(255,255,255,0.0); /* 투명 배경 (필요 시 반투명 배경으로 변경) */
+    padding: 4px 6px;
+    border-radius: 6px;    /* 모서리 둥글게(선택) */
+
+    pointer-events: none;  /* 화면 요소 클릭을 막지 않음 — 텍스트는 선택 불가(선택 가능하게 하려면 제거) */
+    user-select: none;     /* 텍스트 선택 비활성화(선택 가능하게 하려면 제거) */
+
+    box-shadow: none;      /* 그림자 원치 않으면 제거 */
+  }
+
+  /* 모바일에서 너무 크게 보이면 글자 크기 줄이기 */
+  @media (max-width: 420px) {
+    #medical-disclaimer { font-size: 11px; right: 8px; bottom: 8px; }
+  }
+
+  /* 다크 모드용 (사이트가 다크 배경일 때 대비를 위해 색상 변경) */
+  @media (prefers-color-scheme: dark) {
+    #medical-disclaimer {
+      color: #cbd5e1; /* 연한 회색 */
+      background: rgba(0,0,0,0.18); /* 필요 시 사용하는 반투명 배경 */
+    }
+  }
+</style>
+
+<!--
+  옵션 설명:
+  1) 텍스트 선택 가능하게 하려면 `pointer-events: none;` 와 `user-select: none;` 를 삭제하세요.
+  2) 클릭 가능한 링크(예: 개인정보/이용약관으로 연결)를 넣고 싶으면 pointer-events를 none에서 auto로 바꾸고 스타일에 cursor:pointer 추가하세요.
+  3) 만약 footer의 다른 콘텐츠와 겹치는 문제가 있으면 z-index 값을 조정하거나 bottom/right 값을 변경하세요.
+  4) 반투명 배경을 원하면 background 값을 `rgba(255,255,255,0.8)` 같이 바꾸세요.
+-->
 </body>
 </html>
