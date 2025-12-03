@@ -225,56 +225,35 @@
 
 <!-- Styles: 붙여넣기만 하면 작고 회색으로 우하단에 표시됩니다. -->
 <style>
-  /* 안전성: pointer-events를 none으로 하면 아래 요소 클릭을 방해하지 않습니다. 필요한 경우 제거하세요. */
+  /* footer 안 오른쪽 아래에 표시되도록 스타일 조정 */
   #medical-disclaimer {
-    position: fixed;
+    position: absolute;
     right: 12px;           /* 오른쪽 여백 */
-    bottom: 10px;          /* 아래 여백 */
-    z-index: 9999;         /* 다른 요소보다 위에 위치 */
+    bottom: 10px;          /* footer 내부에서 아래 여백 */
+    z-index: 10;
 
-    font-size: 12px;       /* 작게 보이도록 조정 */
+    font-size: 12px;
     line-height: 1.2;
-    color: #6b7280;        /* 회색(#6b7280은 Tailwind의 gray-500 계열) */
+    color: #6b7280;        /* 회색 */
 
-    background: rgba(255,255,255,0.0); /* 투명 배경 (필요 시 반투명 배경으로 변경) */
+    background: rgba(255,255,255,0.0);
     padding: 4px 6px;
-    border-radius: 6px;    /* 모서리 둥글게(선택) */
+    border-radius: 6px;
 
-    pointer-events: none;  /* 화면 요소 클릭을 막지 않음 — 텍스트는 선택 불가(선택 가능하게 하려면 제거) */
-    user-select: none;     /* 텍스트 선택 비활성화(선택 가능하게 하려면 제거) */
-
-    box-shadow: none;      /* 그림자 원치 않으면 제거 */
+    user-select: none;
+    pointer-events: none;
   }
 
-  /* 모바일에서 너무 크게 보이면 글자 크기 줄이기 */
   @media (max-width: 420px) {
     #medical-disclaimer { font-size: 11px; right: 8px; bottom: 8px; }
   }
 
-  /* 다크 모드용 (사이트가 다크 배경일 때 대비를 위해 색상 변경) */
   @media (prefers-color-scheme: dark) {
     #medical-disclaimer {
-      color: #cbd5e1; /* 연한 회색 */
-      background: rgba(0,0,0,0.18); /* 필요 시 사용하는 반투명 배경 */
+      color: #cbd5e1;
+      background: rgba(0,0,0,0.18);
     }
   }
 </style>
-<!--
-  옵션 설명:
-  1) 텍스트 선택 가능하게 하려면 `pointer-events: none;` 와 `user-select: none;` 를 삭제하세요.
-  2) 클릭 가능한 링크(예: 개인정보/이용약관으로 연결)를 넣고 싶으면 pointer-events를 none에서 auto로 바꾸고 스타일에 cursor:pointer 추가하세요.
-  3) 만약 footer의 다른 콘텐츠와 겹치는 문제가 있으면 z-index 값을 조정하거나 bottom/right 값을 변경하세요.
-  4) 반투명 배경을 원하면 background 값을 `rgba(255,255,255,0.8)` 같이 바꾸세요.
--->
-</body>
-</html>
-
-<!--
-  옵션 설명:
-  1) 텍스트 선택 가능하게 하려면 `pointer-events: none;` 와 `user-select: none;` 를 삭제하세요.
-  2) 클릭 가능한 링크(예: 개인정보/이용약관으로 연결)를 넣고 싶으면 pointer-events를 none에서 auto로 바꾸고 스타일에 cursor:pointer 추가하세요.
-  3) 만약 footer의 다른 콘텐츠와 겹치는 문제가 있으면 z-index 값을 조정하거나 bottom/right 값을 변경하세요.
-  4) 반투명 배경을 원하면 background 값을 `rgba(255,255,255,0.8)` 같이 바꾸세요.
--->
 </body>
 </html>
