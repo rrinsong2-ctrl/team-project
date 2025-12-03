@@ -40,7 +40,6 @@ header .subtitle {
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-}
 /* 기존 스타일 유지 */
     text-align: center;        /* 제목 및 텍스트 중앙 정렬 */
 }
@@ -187,4 +186,5 @@ footer {
     margin-top: 40px;
     border-top: 2px solid #e2e8f0;
 }
+
 
