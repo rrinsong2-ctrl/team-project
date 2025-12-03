@@ -41,10 +41,25 @@ header .subtitle {
     border-radius: 12px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.08);
 }
+/* 기존 스타일 유지 */
+    text-align: center;        /* 제목 및 텍스트 중앙 정렬 */
+}
 
 #my-story h2 {
     font-size: 1.4rem;
     margin-bottom: 15px;
+}
+/* 검색창(input)을 가운데로 배치 */
+#나의 이야기 input[type="text"] {
+    width: 80%;                /* 필요하면 조절 가능 */
+    height: 50px;
+    line-height: 50px;         /* placeholder 세로 중앙 */
+    padding: 0 15px;
+    margin: 0 auto;            /* 가운데 정렬의 핵심 */
+    display: block;            /* 반드시 필요 */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
 }
 
 /* ===========================================
@@ -172,3 +187,4 @@ footer {
     margin-top: 40px;
     border-top: 2px solid #e2e8f0;
 }
+
