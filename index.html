@@ -210,24 +210,19 @@
     <!-- =========================
          4. 내 정보 (푸터)
     ========================== -->
-    <footer>
+    <footer style="position: relative;">
         <p>송하린, 오의섭, 석민주 </p>
         <p>
          문의: rrinsong2@gmail.com  <!-- 여기에 본인 이름을 넣고 싶다면 작성하세요 -->
         </p>
-    </footer>
-<!--
-  Filename: medical-disclaimer.html
-  설명: 홈페이지 우하단에 작고 회색 텍스트로 "이 사이트는 의학적 조언을 위한 사이트가 아닙니다. 건강과 관련된 문제는 반드시 의료 전문가와 상담하십시오." 문구를 고정해서 표시하는 코드 스니펫입니다.
-  사용법: 아래 <div id="medical-disclaimer">...</div> 를 사이트의 <body> 맨 끝(footer 바로 위 또는 </body> 직전에) 붙여 넣으세요.
--->
 
-<!-- Disclaimer HTML -->
-<div id="medical-disclaimer" role="note" aria-label="의학 고지" tabindex="-1">
-  이 사이트는 의학적 조언을 위한 사이트가 아닙니다. 건강과 관련된 문제는 반드시 의료 전문가와 상담하십시오.
-</div>
+    <!-- Footer 내부에 위치한 medical disclaimer -->
+    <div id="medical-disclaimer" role="note" aria-label="의학 고지">
+      이 사이트는 의학적 조언을 위한 사이트가 아닙니다. 건강과 관련된 문제는 반드시 의료 전문가와 상담하십시오.
+    </div>
 
-<!-- Styles: 붙여넣기만 하면 작고 회색으로 우하단에 표시됩니다. -->
+</footer>
+
 <style>
   /* footer 안 오른쪽 아래에 표시되도록 스타일 조정 */
   #medical-disclaimer {
@@ -261,4 +256,3 @@
 </style>
 </body>
 </html>
-
