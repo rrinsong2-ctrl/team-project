@@ -34,15 +34,22 @@ index.html 파일을 브라우저에서 열면 바로 실행됩니다.
 - 어려웠던 점
   - footer 글 위치 문제
     - 문제
+      
       이메일과 이름 줄의 순서를 바꾸는 과정에서, footer 내부에 고정되어 있던, disclaimer가 페이지 중간으로 이동하는 현상이 발생.
     - 원인
+      
        position: absolute라는 속성이 footer 내부에 적용되어 있어 부모 요소의 영향을 받아, 부모 요소의 레이아웃 변경 시 위치가 달라진 것으로 보임.
+      
   - 검색창 글씨 가운데 정렬 문제
      - 문제
+   
        검색창의 텍스트를 가운데 정렬하기 위해 text-align: center 를 적용했지만, input 요소의 placeholder와 텍스트가 정확히 가운데에 정렬되지 않음.
     - 원인
+      
        text-align: center는 input 요소의 placeholder에는 적용되지만, 입력된 텍스트에는 브라우저별 차이가 있음. 또한 line-height, padding 값이 맞지 않아 시각적으로 중앙에 오지 않은 것으로 보임.
+      
 - 해결과정에서 배운 점
   - CSS Positioning 이해의 중요성
+    
     absolute는 부모 요소의 레이아웃에 크게 의존하기 때문에, 구조 변경 시 예기치 못한 위치 이동이 발생할 수 있음. fixed나 flexbox를 활용하면 더 안정적으로 footer 내부 요소를 원하는 위치에 고정할 수 있음.
       
